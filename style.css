@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    font-family: Lato;
+}
+
+/* -- container principale -- */
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 0.5fr 3fr 7fr;
+}
+
+.title {
+    font-weight: 900;
+    color: white;
+    justify-self: center;
+}
+
+/* -- player display container -- */
+
+.avatar {
+    
+}
