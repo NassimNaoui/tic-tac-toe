@@ -11,14 +11,43 @@
         <h1 class="title">TIC-TAC-TOE</h1>
         <div class="player-display">
             <div id="player1" class="player-container">
-                <div class="avatar"></div>
-                <div class="player-card"></div>
+                <img class="avatar" src="./user.png" alt="">
+                <div class="player-card">
+                    <div class="text">
+                        <div>Player 1</div>
+                        <div style="font-weight: 700; font-size: 1.2em ;color: rgb(12, 240, 12);">X</div>
+                        <div id="socre-player-1">Score :</div>
+                    </div>
+                </div>
             </div>
-            <div id="player2" class="player-container"></div>
+            <div id="player2" class="player-container">
+                <img class="avatar" src="./user.png" alt="">
+                <div class="player-card">
+                    <div class="text">
+                        <div>Player 2</div>
+                        <div style="font-weight: 700; font-size: 1.3em ;color:rgb(242, 61, 61);">O</div>
+                        <div id="socre-player-1">Score :</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="game-container"></div>
+        <div class="game-container">
+            <div class="grid-container">
+                <div class="grid-game">
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                    <div class="card-game"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-<script src="myscripts.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
