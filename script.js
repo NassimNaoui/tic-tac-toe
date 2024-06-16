@@ -32,7 +32,8 @@ const gameBoardObject = {
 
     gameBoardChecked: {
         player1: [],
-        player2: ['A3', 'B3', 'C3']
+        player2: [],
+        roundResult: [['win',false],['draw',false]]
     }
 }
 
@@ -76,7 +77,17 @@ const flowController = {
             result = prompt(`${playerNumber} play :`);
             result = result.toUpperCase();
             gameBoardObject.gameBoardChecked[playerNumber].push(result);
+            console.log(`${playerNumber} play : ${result}`)
             this.checkingBoard(gameBoardObject.gameBoardChecked[playerNumber]);
+            this.checkGame()
+        }
+    },
+    game() {
+        while (!gameBoardObject.gameBoardChecked.roundResult[0][1]) {
+            this.round(); if(gameBoardObject.gameBoardChecked.roundResult[0][1] || gameBoardObject.gameBoardChecked.roundResult[1][1]) {
+                this.resetBoard();
+                break;
+            }; 
         }
     },
     checkGame() {
@@ -84,11 +95,43 @@ const flowController = {
             for (const index in gameBoardObject.combinaisonsPermutation) {
                 if (gameBoardObject.compareArrays(gameBoardObject.combinaisonsPermutation[index], gameBoardObject.gameBoardChecked[playerNumber])) {
                     player[playerNumber].score += 1;
-                    console.log(player[playerNumber].score)
+                    gameBoardObject.gameBoardChecked.roundResult[0][1] = true;
+                    console.log(player[playerNumber].score);
+                    console.log(gameBoardObject.gameBoardChecked.roundResult);
+                }
+                else if (gameBoardObject.gameBoardChecked.player1.length + gameBoardObject.gameBoardChecked.player2.length === gameBoardObject.gameBoard.length) {
+                    gameBoardObject.gameBoardChecked.roundResult[1][1] = true;
+                    console.log(gameBoardObject.gameBoardChecked.roundResult);
                 }
             }
         }
     },
-    
+    resetBoard() {
+        for (const index in gameBoardObject.gameBoard) {
+            gameBoardObject.gameBoard[index][1] = false;
+        };
+        for (const index in gameBoardObject.gameBoardChecked.roundResult) {
+            gameBoardObject.gameBoardChecked.roundResult[index][1] = false;
+        }
+        gameBoardObject.gameBoardChecked.player1 = [];
+        gameBoardObject.gameBoardChecked.player2 = [];
+    },
+    resetScore() {
+        for (const playerNumber in player) {
+            player[playerNumber].score = 0;
+        }
+    }
 };
+
+
+const buttons = document.querySelectorAll('.card-game');
+const icon = document.createElement('div');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click',function() {
+        icon.classList.add('player2')
+        icon.textContent = 'X';
+        this.appendChild(icon)
+    })
+})
 

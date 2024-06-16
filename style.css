@@ -103,6 +103,8 @@ body {
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 .card-game {
@@ -111,4 +113,27 @@ body {
     border-radius: 10px;
     background-color: #051937d1;
     margin: 5px;
+    display: flex;
+    border: none;
+}
+
+
+.player1, .player2 {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    font-weight: 700; 
+    font-size: 8em ;
+}
+
+.player1{
+    color: rgb(12, 240, 12);
+    text-shadow: rgb(12, 240, 12) 1px 0 7px;
+}
+
+.player2{
+    color:rgb(242, 61, 61);
+    text-shadow: rgb(242, 61, 61) 1px 0 7px;
 }
