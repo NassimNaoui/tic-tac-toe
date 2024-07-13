@@ -76,6 +76,14 @@ body {
     gap: 15px;
 }
 
+.scoreplayer {
+    display: flex;
+    flex-direction: row;
+}
+
+#score-player1, #score-player2 {
+    padding-left: 5px;
+}
 
 /* -- Grid container -- */
 
