@@ -29,11 +29,11 @@ const gameBoardObject = {
     compareArrays(a, b) {
         return JSON.stringify(a) === JSON.stringify(b)
     },
-
     gameBoardChecked: {
         player1: [],
         player2: [],
-        roundResult: [['win', false], ['draw', false]]
+        roundResult: [['win', false], ['draw', false]],
+        infoRound: []
     }
 }
 
@@ -76,10 +76,22 @@ const flowController = {
     },
     selectedCase: []
     ,
+    findIntersection(arr1, arr2) {
+        const intersection = [];
+        for (let i = 0; i < arr1.length; i++) {
+          const element = arr1[i];
+          if (arr2.indexOf(element) !== -1 && intersection.indexOf(element) === -1) {
+            intersection.push(element);
+          }
+        } if (intersection.length === 3) {
+            return intersection;
+        }
+      },
     round(playerNumber) {
         gameBoardObject.gameBoardChecked[playerNumber].push(this.selectedCase[0]);
         console.log(`${playerNumber} play : ${this.selectedCase}`)
         this.checkingBoard(gameBoardObject.gameBoardChecked[playerNumber]);
+        console.log(`${playerNumber} : ${gameBoardObject.gameBoardChecked[playerNumber]}`)
         this.checkGame(playerNumber)
     },
     game() {
@@ -90,18 +102,28 @@ const flowController = {
             };
         }
     },
+    findWinCombinaison(playerNumber) {
+        let found = false;
+        for (let i = 0; i < gameBoardObject.combinaisonsPermutation.length; i++) {
+            if (JSON.stringify(gameBoardObject.combinaisonsPermutation[i]) === JSON.stringify(this.findIntersection(gameBoardObject.gameBoardChecked[playerNumber], gameBoardObject.combinaisonsPermutation[i]))) {
+                found = true
+                break;
+            }
+        }
+        return found;
+    },
     checkGame(playerNumber) {
-        for (const index in gameBoardObject.combinaisonsPermutation) {
-            if (gameBoardObject.compareArrays(gameBoardObject.combinaisonsPermutation[index], gameBoardObject.gameBoardChecked[playerNumber])) {
-                player[playerNumber].score += 1;
-                gameBoardObject.gameBoardChecked.roundResult[0][1] = true;
-                console.log(player[playerNumber].score);
-                console.log(gameBoardObject.gameBoardChecked.roundResult);
-            }
-            else if (gameBoardObject.gameBoardChecked.player1.length + gameBoardObject.gameBoardChecked.player2.length === gameBoardObject.gameBoard.length) {
-                gameBoardObject.gameBoardChecked.roundResult[1][1] = true;
-                console.log(gameBoardObject.gameBoardChecked.roundResult);
-            }
+        if (this.findWinCombinaison(playerNumber)) {
+            player[playerNumber].score += 1;
+            gameBoardObject.gameBoardChecked.roundResult[0][1] = true;
+            gameBoardObject.gameBoardChecked.infoRound[0] = `${playerNumber} won the round !`
+            console.log(player[playerNumber].score);
+            console.log(gameBoardObject.gameBoardChecked.roundResult);
+        }
+        else if (gameBoardObject.gameBoardChecked.player1.length + gameBoardObject.gameBoardChecked.player2.length === gameBoardObject.gameBoard.length) {
+            gameBoardObject.gameBoardChecked.roundResult[1][1] = true;
+            gameBoardObject.gameBoardChecked.infoRound[0] = `It's a draw !`
+            console.log(gameBoardObject.gameBoardChecked.roundResult);
         }
     },
     resetBoard() {
@@ -149,10 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const scoreplayer1 = document.getElementById('score-player1')
         const scoreplayer2 = document.getElementById('score-player2')
+        const infoRound = document.getElementById('info-round')
         
         scoreplayer1.innerHTML = player.player1.score
         scoreplayer2.innerHTML = player.player2.score
+        infoRound.innerHTML = gameBoardObject.gameBoardChecked.infoRound
         
+        if (gameBoardObject.gameBoardChecked.roundResult[0][1]) {
+            buttons.forEach(item => {
+                item.removeEventListener('click', handleClick);
+            })
+        }
+
         // Alterner les joueurs
         if (currentPlayer === 'player1') {
             player.player1[2] = true;
@@ -167,11 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(player.player1[2]);
         console.log(player.player2[2]);
     }
-
     // Ajouter l'event listener à chaque bouton
     buttons.forEach(item => {
         item.addEventListener('click', handleClick);
     });
 });
-
-
