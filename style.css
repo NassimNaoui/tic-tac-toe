@@ -156,12 +156,20 @@ body {
 }
 
 
+.info-and-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
 .reset-img, .clear-img {
     height: 25px;
     width: 25px;
 }
 
-.reset, .clear {
+#reset, #clear {
     background-color: rgba(0, 0, 0, 0);
     border: none;
 }

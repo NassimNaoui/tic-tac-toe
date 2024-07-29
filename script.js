@@ -210,4 +210,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
+const resetButton = document.getElementById("reset")
+resetButton.addEventListener("click", () => {
+    flowController.resetBoard();
+    const buttons = document.querySelectorAll('.card-game');
+    buttons.forEach(item => {
+        while (item.firstChild) {
+            item.firstChild.remove()
+        }
+    });
+})
