@@ -129,12 +129,19 @@ const flowController = {
     resetBoard() {
         for (const index in gameBoardObject.gameBoard) {
             gameBoardObject.gameBoard[index][1] = false;
+            console.log(gameBoardObject.gameBoard[index][1])
         };
         for (const index in gameBoardObject.gameBoardChecked.roundResult) {
             gameBoardObject.gameBoardChecked.roundResult[index][1] = false;
+            console.log(gameBoardObject.gameBoardChecked.roundResult[index][1])
         }
         gameBoardObject.gameBoardChecked.player1 = [];
         gameBoardObject.gameBoardChecked.player2 = [];
+        console.log(gameBoardObject.gameBoardChecked.player1);
+        console.log(gameBoardObject.gameBoardChecked.player1);
+        for (const playerNumber in player) {
+            player[playerNumber].played = false;
+        }
     },
     resetScore() {
         for (const playerNumber in player) {
@@ -202,3 +209,5 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', handleClick);
     });
 });
+
+

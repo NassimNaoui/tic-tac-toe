@@ -154,3 +154,14 @@ body {
     color:rgb(242, 61, 61);
     text-shadow: rgb(242, 61, 61) 1px 0 7px;
 }
+
+
+.reset-img, .clear-img {
+    height: 25px;
+    width: 25px;
+}
+
+.reset, .clear {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
