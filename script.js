@@ -62,6 +62,7 @@ const player = {
         score: 0,
         played: false,
     },
+    currentPlayer: []
 }
 
 const flowController = {
@@ -139,11 +140,14 @@ const flowController = {
         gameBoardObject.gameBoardChecked.player2 = [];
         console.log(gameBoardObject.gameBoardChecked.player1);
         console.log(gameBoardObject.gameBoardChecked.player1);
+        player.currentPlayer[0] = 'player1';
+        gameBoardObject.gameBoardChecked.infoRound[0] = '';
         for (const playerNumber in player) {
             player[playerNumber].played = false;
         }
     },
-    resetScore() {
+    resetAll() {
+        this.resetBoard();
         for (const playerNumber in player) {
             player[playerNumber].score = 0;
         }
@@ -152,7 +156,7 @@ const flowController = {
 
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.card-game');
-    let currentPlayer = 'player1';
+    player.currentPlayer[0] = 'player1';
 
     // Définir la fonction de gestion de clic
     function handleClick(event) {
@@ -165,14 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Déterminer le symbole et la classe en fonction du joueur actuel
         const icon = document.createElement('div');
-        icon.classList.add(currentPlayer);
-        icon.textContent = player[currentPlayer].symbol;
+        icon.classList.add(player.currentPlayer[0]);
+        icon.textContent = player[player.currentPlayer[0]].symbol;
         item.appendChild(icon);
 
         // Mettre à jour le choix et appeler la fonction de round
         choice = item.id;
         flowController.selectedCase[0] = choice;
-        flowController.round(currentPlayer);
+        flowController.round(player.currentPlayer[0]);
 
         //Afficher le score des joueurs
         
@@ -184,21 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreplayer2.innerHTML = player.player2.score
         infoRound.innerHTML = gameBoardObject.gameBoardChecked.infoRound
         
-        if (gameBoardObject.gameBoardChecked.roundResult[0][1]) {
-            buttons.forEach(item => {
-                item.removeEventListener('click', handleClick);
-            })
-        }
+        // if (gameBoardObject.gameBoardChecked.roundResult[0][1]) {
+        //     buttons.forEach(item => {
+        //         item.removeEventListener('click', handleClick);
+        //     })
+        // }
 
         // Alterner les joueurs
-        if (currentPlayer === 'player1') {
+        if (player.currentPlayer[0] === 'player1') {
             player.player1[2] = true;
             player.player2[2] = false;
-            currentPlayer = 'player2';
+            player.currentPlayer[0] = 'player2';
         } else {
             player.player1[2] = false;
             player.player2[2] = true;
-            currentPlayer = 'player1';
+            player.currentPlayer[0] = 'player1';
         }
 
         console.log(player.player1[2]);
@@ -213,6 +217,21 @@ document.addEventListener('DOMContentLoaded', () => {
 const resetButton = document.getElementById("reset")
 resetButton.addEventListener("click", () => {
     flowController.resetBoard();
+    document.getElementById('info-round').innerHTML = '';
+    const buttons = document.querySelectorAll('.card-game');
+    buttons.forEach(item => {
+        while (item.firstChild) {
+            item.firstChild.remove()
+        }
+    });
+})
+
+const clearButton = document.getElementById("clear")
+clearButton.addEventListener("click", () => {
+    flowController.resetAll();
+    document.getElementById('info-round').innerHTML = '';
+    document.getElementById('score-player1').innerHTML = 0;
+    document.getElementById('score-player2').innerHTML = 0;
     const buttons = document.querySelectorAll('.card-game');
     buttons.forEach(item => {
         while (item.firstChild) {
