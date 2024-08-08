@@ -239,3 +239,34 @@ clearButton.addEventListener("click", () => {
         }
     });
 })
+
+
+// const gameContainer = document.querySelector('.game-container')
+// const startButton = document.querySelector(".start-game")
+// const infoAndButtons = document.querySelector(".info-and-buttons")
+
+// startButton.addEventListener("click", function () {
+//     gameContainer.classList.add("active");
+//     startButton.classList.add("active");
+//     infoAndButtons.classList.add("active");
+// })
+
+
+const buttonLegendReset = document.querySelector(".button-legend-reset")
+const buttonLegendClear = document.querySelector(".button-legend-clear")
+
+resetButton.addEventListener('mouseenter', function () {
+    buttonLegendReset.classList.add('active');
+})
+
+resetButton.addEventListener('mouseleave', function () {
+    buttonLegendReset.classList.remove('active');
+})
+
+clearButton.addEventListener('mouseenter', function () {
+    buttonLegendClear.classList.add('active');
+})
+
+clearButton.addEventListener('mouseleave', function () {
+    buttonLegendClear.classList.remove('active');
+})

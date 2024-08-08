@@ -91,17 +91,36 @@ body {
     display: flex;
     height: 100%;
     width: 100%;
+    opacity: 1;
     justify-content: center;
     align-content: center;
-
 }
 
-#info-round {
+.game-container.active{
     display: flex;
-    justify-content: center;
-    align-content: center;
-    color: white;
+}
+
+.start-game {
+    height: 100px;
+    width: 300px;
+    border-radius: 20px;
+    border: none;
+    justify-self: center;
+    margin-top: 100px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     font-weight: 500;
+    font-size: 1.3em;
+    background-color: rgba(186, 182, 182, 0.528);
+    color: white;
+}
+
+.start-game:hover{
+    background-color: #051937;
+    transition: 1s;
+}
+
+.start-game.active {
+    display: none;
 }
 
 .grid-container {
@@ -155,21 +174,82 @@ body {
     text-shadow: rgb(242, 61, 61) 1px 0 7px;
 }
 
-
 .info-and-buttons {
     display: flex;
     flex-direction: row;
+    justify-self: center;
     justify-content: center;
     align-items: center;
-    gap:5px;
+    width: 38%;
+}
+
+.info-and-buttons.active {
+    display: flex;
+}
+
+#info-round {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    width: 90%;
+    font-weight: 500;
+    padding-left: 60px;
+}
+
+.buttons {
+    display: flex;
+    width: 10%;
+    justify-content: space-around;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .reset-img, .clear-img {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
 }
 
 #reset, #clear {
     background-color: rgba(0, 0, 0, 0);
     border: none;
+}
+
+.button-legend-reset, .button-legend-clear {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-legend-reset.active {
+    display: flex;
+}
+
+.button-legend-clear.active {
+    display: flex;
+}
+
+.button-tittle {
+    color: white;
+    background-color: rgba(50, 50, 50, 0.648);
+    font-size: 0.8em;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.button-arrow {
+    width: 0;
+    height: 0;
+    
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    
+    border-top: 5px solid rgba(50, 50, 50, 0.648);
 }
