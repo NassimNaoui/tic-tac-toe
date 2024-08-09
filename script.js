@@ -241,15 +241,17 @@ clearButton.addEventListener("click", () => {
 })
 
 
-// const gameContainer = document.querySelector('.game-container')
-// const startButton = document.querySelector(".start-game")
-// const infoAndButtons = document.querySelector(".info-and-buttons")
+const gameContainer = document.querySelector('.game-container')
+const startButton = document.querySelector(".start-game")
+const infoAndButtons = document.querySelector(".info-and-buttons")
+const playerDisplay = document.querySelector('.player-display')
 
-// startButton.addEventListener("click", function () {
-//     gameContainer.classList.add("active");
-//     startButton.classList.add("active");
-//     infoAndButtons.classList.add("active");
-// })
+startButton.addEventListener("click", function () {
+    gameContainer.classList.add("active");
+    startButton.classList.add("active");
+    infoAndButtons.classList.add("active");
+    playerDisplay.classList.add("active");
+})
 
 
 const buttonLegendReset = document.querySelector(".button-legend-reset")

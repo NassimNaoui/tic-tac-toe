@@ -31,11 +31,15 @@ body {
 
 .player-display {
     height: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     padding-top: 25px;
     gap: 25px;
+}
+
+.player-display.active {
+    display: flex;
 }
 
 .player-container {
@@ -88,7 +92,7 @@ body {
 /* -- Grid container -- */
 
 .game-container {
-    display: flex;
+    display: none;
     height: 100%;
     width: 100%;
     opacity: 1;
@@ -175,12 +179,12 @@ body {
 }
 
 .info-and-buttons {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-self: center;
-    justify-content: center;
-    align-items: center;
-    width: 38%;
+    align-items: end;
+    width: 500px;
+    height: 60px;
 }
 
 .info-and-buttons.active {
@@ -189,35 +193,41 @@ body {
 
 #info-round {
     display: flex;
-    justify-content: center;
-    align-content: center;
+    justify-content:end;
+    align-content:center;
     color: white;
-    width: 90%;
+    width: 70%;
     font-weight: 500;
-    padding-left: 60px;
 }
 
 .buttons {
     display: flex;
-    width: 10%;
-    justify-content: space-around;
+    width: 30%;
+    height: 30px;
+    justify-content: center;
+    align-items: end;
 }
 
 .button {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    justify-content: end;
+    height: 100%;
+    width: 100%;
 }
 
 .reset-img, .clear-img {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
 }
 
 #reset, #clear {
     background-color: rgba(0, 0, 0, 0);
     border: none;
 }
+
+
 
 .button-legend-reset, .button-legend-clear {
     display: none;
@@ -234,10 +244,11 @@ body {
     display: flex;
 }
 
+
 .button-tittle {
     color: white;
     background-color: rgba(50, 50, 50, 0.648);
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: 400;
     white-space: nowrap;
     padding: 5px;
